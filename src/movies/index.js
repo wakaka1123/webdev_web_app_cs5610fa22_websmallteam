@@ -1,5 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import {createMoviesThunk, findAllMoviesThunk} from "./movies-thunks";
+import {
+  createMoviesThunk,
+  deleteMovieThunk,
+  findAllMoviesThunk
+} from "./movies-thunks";
 import {useEffect, useState} from "react";
 
 const Movies =()=>{
@@ -28,6 +32,10 @@ const Movies =()=>{
               movies.map(movie=>
                 <li key = {movie._id}>
                   {movie.title}
+                  <button className="float-end" onClick={()=>{
+                    dispatch(deleteMovieThunk(movie._id))
+                  }}>Delete</button>
+
                 </li>
               )
 
