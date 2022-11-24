@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllMoviesThunk} from "./movies-thunks";
+import {createMoviesThunk, findAllMoviesThunk} from "./movies-thunks";
 
 const moviesReducer = createSlice({
   name:'movies',
@@ -7,6 +7,9 @@ const moviesReducer = createSlice({
   extraReducers:{
     [findAllMoviesThunk.fulfilled]:(state,action)=>{
         return state = action.payload
+    },
+    [createMoviesThunk.fulfilled]: (state,action)=>{
+      state.push(action.payload)
     }
   }
 })

@@ -3,7 +3,7 @@ import {createMovie, findAllMovies} from "./movies-service";
 
 export const createMoviesThunk =createAsyncThunk(
     'createMovie',
-    ()=>createMovie()
+    (newMovie)=>createMovie(newMovie)
 )
 
 
