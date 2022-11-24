@@ -12,8 +12,9 @@ const Movies =()=>{
     return(
         <>
           <h1>Hello Movies</h1>
+          <><input/></>
           <ul>
-            <><input/></>
+
             <li>
               <input onChange={(e)=>setMovie({...movie,title:e.target.value})}
                   value ={movie.title}/>
