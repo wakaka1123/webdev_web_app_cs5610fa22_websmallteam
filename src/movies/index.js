@@ -8,11 +8,12 @@ const Movies =()=>{
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(findAllMoviesThunk())
-  },[])
+  },[dispatch])
     return(
         <>
           <h1>Hello Movies</h1>
           <ul>
+            <><input/></>
             <li>
               <input onChange={(e)=>setMovie({...movie,title:e.target.value})}
                   value ={movie.title}/>
