@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 const Movies =()=>{
   const movies = useSelector(state=>state.movies)
-  const [movie,setMovie] = useState({})
+  const [movie,setMovie] = useState({title:"New Movie"})
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(findAllMoviesThunk())
