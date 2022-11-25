@@ -32,6 +32,7 @@ const Movies =()=>{
               movies.map(movie=>
                 <li key = {movie._id}>
                   {movie.title}
+                  <button>Like</button>
                   <button className="float-end" onClick={()=>{
                     dispatch(deleteMovieThunk(movie._id))
                   }}>Delete</button>
