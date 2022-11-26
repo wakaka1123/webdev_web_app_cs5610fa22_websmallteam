@@ -6,7 +6,7 @@ const initialState={
   loading:false
 }
 
-export const likesReducer= createSlice({
+const likesReducer= createSlice({
   name: 'likes',
   initialState,
   extraReducers:{
@@ -15,3 +15,4 @@ export const likesReducer= createSlice({
     }
   }
 })
+export default likesReducer.reducer
