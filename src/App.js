@@ -8,12 +8,16 @@ import Profile from "./profile";
 import {BrowserRouter, Link} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import EditProfileComponent from "./edit-profile";
-
+import omdbReducer from "./omdb/omdb-reducer";
+import OmdbSearch from "./omdb/omdb-search";
+import {likesReducer} from "./likes/likes-reducer";
 
 const store = configureStore({
   reducer:{
     movies:moviesReducer,
-      profiles: profilesReducer
+      profiles: profilesReducer,
+    omdb:omdbReducer,
+    likes: likesReducer
   }
 })
 
@@ -29,6 +33,7 @@ function App() {
                     <Route path="/profile" element={<Profile/>}></Route>
                     <Route path="/" element={<Movies/>}></Route>
                     <Route path="edit-profile" element={<EditProfileComponent/>}/>
+                    <Route path="/search" element={<OmdbSearch/>}></Route>
                 </Routes>
             </div>
         </Provider>
