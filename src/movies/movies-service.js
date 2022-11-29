@@ -15,6 +15,8 @@ export const findAllMovies= async ()=>{
 }
 
 export const updateMovie=async ()=>{}
+
+
 export const deleteMovie= async(mid)=>{
   const response = await axios.delete(`${MOVIE_API_URL}/${mid}`)
   const status = response.data

@@ -33,44 +33,66 @@ const EditItem = (input) => {
                                             <div className="col-md-6 mt-5">
                                                 <label className="form-label">First Name *</label>
                                                 <input type="text" className="form-control" placeholder=""
-                                                       aria-label="First name" value={profile.firstName}/>
+                                                       aria-label="First name" value={profile.firstName}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           firstName: e.target.value})} />
                                             </div>
 
                                             <div className="col-md-6 mt-5">
                                                 <label className="form-label">Last Name *</label>
                                                 <input type="text" className="form-control" placeholder=""
-                                                       aria-label="Last name" value={profile.lastName}/>
+                                                       aria-label="Last name" value={profile.lastName}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           lastName: e.target.value})}
+                                                />
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <label className="form-label">Role *</label>
                                                 <input type="text" className="form-control" placeholder=""
-                                                       aria-label="role" value={profile.role}/>
+                                                       aria-label="role" value={profile.role}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           role: e.target.value})}/>
                                             </div>
                                             <div className="col-md-6">
                                                 <label className="form-label">City *</label>
                                                 <input type="text" className="form-control" placeholder=""
-                                                       aria-label="city" value={profile.city}/>
+                                                       aria-label="city" value={profile.city}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           city: e.target.value})}/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <label htmlFor="inputEmail4" className="form-label">Email *</label>
-                                                <input type="email" className="form-control" id="inputEmail4" value={profile.email}/>
+                                                <input type="email" className="form-control" id="inputEmail4" value={profile.email}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           email: e.target.value})}/>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <label className="form-label">Mobile number</label>
                                                 <input type="text" className="form-control" placeholder=""
-                                                       aria-label="Phone number" value={profile.mobile}/>
+                                                       aria-label="Phone number" value={profile.mobile}
+                                                       onChange={(e) => update({
+                                                           ...profile,
+                                                           mobile: e.target.value})}/>
                                             </div>
                                         </div>
 
                                         <div className="col-md-12">
                                             <label className="form-label">I am ...</label>
                                             <input type="text" className="form-control" placeholder=""
-                                                   aria-label="Phone number" value={profile.Iam}/>
+                                                   aria-label="Phone number" value={profile.Iam}
+                                                   onChange={(e) => update({
+                                                       ...profile,
+                                                       Iam: e.target.value})}/>
                                         </div>
                                     </div>
 
@@ -185,7 +207,7 @@ const EditItem = (input) => {
 
                             <div className="gap-3 d-md-flex justify-content-md-end text-center">
                                 <button type="button" className="btn btn-secondary btn-lg">Cancel</button>
-                                <button type="button" className="btn btn-primary btn-lg">Update profile</button>
+                                <button type="button" className="btn btn-primary btn-lg" onClick={() => editProfileHandler()}>Update profile</button>
                             </div>
 
 
