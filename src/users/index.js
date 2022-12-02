@@ -1,6 +1,8 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllUsersThunk} from "./users-thunk";
+import NavigationBar from "../home/navigationBar";
+import ContactBar from "../home/contactBar";
 
 const UserList = () => {
     const {users} = useSelector((state) => state.users)
@@ -10,6 +12,8 @@ const UserList = () => {
     }, [])
     return (
         <>
+            <ContactBar/>
+            <NavigationBar/>
             <h1>Users {users.length}</h1>
             <ul className="list-group">
                 {
