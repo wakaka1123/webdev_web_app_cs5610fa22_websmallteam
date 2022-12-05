@@ -1,11 +1,12 @@
 import React from "react";
 import EditItem from "./edit-item";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
 const EditProfileComponent = () => {
-    const profile = useSelector(state => state.profiles)
+    const {currentUser} = useSelector((state) => state.users)
     return (
-        <EditItem key={profile._id}  post={profile}/>
+        <EditItem key={currentUser._id}  post={currentUser}/>
     );
 };
 

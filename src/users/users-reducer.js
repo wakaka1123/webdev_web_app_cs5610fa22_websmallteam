@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {findAllUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-thunk";
+import {updateUser} from "./users-service";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -10,6 +11,15 @@ const usersReducer = createSlice({
         error: null
     },
     reducers: {
+        editProfile(state, action) {
+            updateUser(action.payload)
+                .then(res => console.log(res));
+            state = {
+                ...state,
+                currentUser: action.payload
+            }
+            return state;
+        }
     },
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, action) => {
@@ -42,4 +52,5 @@ const usersReducer = createSlice({
     }
 })
 
+export const {editProfile} = usersReducer.actions;
 export default usersReducer.reducer

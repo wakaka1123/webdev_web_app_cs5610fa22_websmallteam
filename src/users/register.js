@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Select from 'react-select'
+import Select from 'react-select';
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunk";
 import NavigationBar from "../home/navigationBar";
