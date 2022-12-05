@@ -5,6 +5,7 @@ import {
   findAllMoviesThunk
 } from "./movies-thunks";
 import {useEffect, useState} from "react";
+import OmNav from "../omdb/omNav";
 
 const Movies =()=>{
   const movies = useSelector(state=>state.movies)
@@ -15,6 +16,7 @@ const Movies =()=>{
   },[dispatch])
     return(
         <>
+          <OmNav/>
           <h1>Hello Movies</h1>
           <ul>
             <li>
