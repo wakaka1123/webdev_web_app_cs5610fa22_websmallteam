@@ -1,10 +1,9 @@
 import './App.css';
 import moviesReducer from "./movies/movies-reducer";
-import profilesReducer from "./profile/profile-reducer"
 import usersReducer from "./users/users-reducer"
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import Profile from "./users/profile";
+import Profile from "./users/profile.js";
 import UserList from "./users";
 import Register from "./users/register";
 import Login from "./users/login";
@@ -20,7 +19,6 @@ import CurrentUser from "./users/current-user";
 const store = configureStore({
     reducer: {
         movies: moviesReducer,
-        profiles: profilesReducer,
         omdb: omdbReducer,
         likes: likesReducer,
         users: usersReducer
