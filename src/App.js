@@ -4,6 +4,7 @@ import usersReducer from "./users/users-reducer"
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import Profile from "./users/profile.js";
+import OthersProfiles from "./users/profile-other";
 import UserList from "./users";
 import Register from "./users/register";
 import Login from "./users/login";
@@ -34,6 +35,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/profile" element={<Profile/>}/>
+                        <Route path="/other" element={<OthersProfiles/>}/>
                         <Route path="/users" element={<UserList/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/login" element={<Login/>}/>
