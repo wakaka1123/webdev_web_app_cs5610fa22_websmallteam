@@ -12,8 +12,8 @@ const UserList = () => {
     }, [])
     return (
         <>
-            <ContactBar/>
-            <NavigationBar/>
+            {/*<ContactBar/>*/}
+            {/*<NavigationBar/>*/}
             <h1>Users {users.length}</h1>
             <ul className="list-group">
                 {

@@ -41,9 +41,9 @@ const NavigationBar = () => {
                     {
                         currentUser &&
                         <>
-                            <li className="nav-item">
-                                <h3> Welcome, {currentUser.username}</h3>
-                            </li>
+                            {/*<li className="nav-item">*/}
+                            {/*    <h3> Welcome, {currentUser.username}</h3>*/}
+                            {/*</li>*/}
                             <li className="nav-item">
                                 <a href="/profile" className="nav-link">View My Profile</a>
                             </li>
@@ -67,7 +67,18 @@ const NavigationBar = () => {
 
 
             </div>
+
+            {
+                currentUser &&
+                <div className="row">
+                <div className="col-1"/>
+                <div className="col-5"> Welcome, {currentUser.username}</div>
+                </div>
+            }
+
         </div>
+
+
 
 
     )
