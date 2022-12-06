@@ -30,8 +30,8 @@ const Register = () => {
     }
     return(
         <>
-            <ContactBar/>
-            <NavigationBar/>
+            {/*<ContactBar/>*/}
+            {/*<NavigationBar/>*/}
             <h1>Register</h1>
             {
                 error &&

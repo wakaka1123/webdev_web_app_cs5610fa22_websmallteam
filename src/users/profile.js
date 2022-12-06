@@ -10,8 +10,8 @@ const Profile = () => {
     const navigate = useNavigate();
     return (
         <>
-            <ContactBar/>
-            <NavigationBar/>
+            {/*<ContactBar/>*/}
+            {/*<NavigationBar/>*/}
             <h1>Profile</h1>
             {
                 currentUser &&

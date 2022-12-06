@@ -2,7 +2,7 @@ import './App.css';
 import moviesReducer from "./movies/movies-reducer";
 import usersReducer from "./users/users-reducer"
 import {configureStore} from "@reduxjs/toolkit";
-import {Provider} from "react-redux";
+import {Provider, useSelector} from "react-redux";
 import Profile from "./users/profile.js";
 import OthersProfiles from "./users/profile-other";
 import UserList from "./users";
@@ -15,6 +15,8 @@ import likesReducer from "./likes/likes-reducer";
 import HomePage from "./home";
 import Omdb from "./omdb";
 import CurrentUser from "./users/current-user";
+import NavigationBar from "./home/navigationBar";
+import TopNav from "./topnav";
 
 
 const store = configureStore({
@@ -27,11 +29,15 @@ const store = configureStore({
 })
 
 
+
+
 function App() {
     return (
         <Provider store={store}>
             <div className="container">
                 <CurrentUser>
+                    <TopNav/>
+                    <NavigationBar/>
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/profile" element={<Profile/>}/>

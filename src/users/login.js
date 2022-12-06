@@ -17,8 +17,8 @@ const Login = () => {
     }
     return(
         <>
-            <ContactBar/>
-            <NavigationBar/>
+            {/*<ContactBar/>*/}
+            {/*<NavigationBar/>*/}
             <h1>Login</h1>
             {
                 error &&
