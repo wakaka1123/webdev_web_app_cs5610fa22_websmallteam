@@ -31,8 +31,6 @@ const EditItem = (input) => {
 
     return (
         <>
-            <ContactBar/>
-            <NavigationBar/>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
@@ -101,7 +99,7 @@ const EditItem = (input) => {
                                                        aria-label="role" value={profile.role}
                                                        onChange={(e) => update({
                                                            ...profile,
-                                                           role: e.target.value})}/>
+                                                           role: e.target.value})} readOnly/>
                                             </div>
                                         </div>
 

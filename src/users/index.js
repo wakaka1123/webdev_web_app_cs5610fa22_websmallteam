@@ -3,9 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllUsersThunk} from "./users-thunk";
 import NavigationBar from "../home/navigationBar";
 import ContactBar from "../home/contactBar";
+import OtherProfile from "./profile-other";
 
 const UserList = () => {
-    const {users} = useSelector((state) => state.users)
+    const {currentUser, users} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
@@ -17,11 +18,12 @@ const UserList = () => {
             <h1>Users {users.length}</h1>
             <ul className="list-group">
                 {
-                    users.map((user) =>
-                    <li className="list-group-item"
-                        key={user._id}>
-                        {user.username}
-                    </li>
+                    Object.entries(users).map(([key, user]) =>
+                        currentUser._id != key &&
+                        <li className="list-group-item"
+                            key={key}>
+                            <a href={"/profile/" + key}>{user.username}</a>
+                        </li>
                     )
                 }
             </ul>

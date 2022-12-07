@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {profileThunk} from "./users-thunk";
+import {findAllUsersThunk, profileThunk} from "./users-thunk";
 import {useDispatch} from "react-redux";
 
 const CurrentUser = ({children}) => {

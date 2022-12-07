@@ -8,7 +8,9 @@ export const createUser = async() => {
 
 export const findAllUsers = async () => {
     const response = await axios.get(`${BASE_URL}/profile`)
-    return response.data
+    let allUsers = {}
+    response.data.forEach((user,i) => allUsers[user._id] = user);
+    return allUsers
 }
 
 export const register = async (user) => {
