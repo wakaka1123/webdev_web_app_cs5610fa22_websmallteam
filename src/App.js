@@ -1,6 +1,7 @@
 import './App.css';
 import moviesReducer from "./movies/movies-reducer";
 import usersReducer from "./users/users-reducer"
+import googlePlacesReducer from "./googleplaces/googleplaces-reducer"
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider, useSelector} from "react-redux";
 import Profile from "./users/profile.js";
@@ -17,6 +18,8 @@ import Omdb from "./omdb";
 import CurrentUser from "./users/current-user";
 import NavigationBar from "./home/navigationBar";
 import TopNav from "./topnav";
+import GooglePlacesSearch from "./googleplaces/googleplaces-search";
+import GooglePlacesDetails from "./googleplaces/googleplaces-details"
 
 
 const store = configureStore({
@@ -24,7 +27,8 @@ const store = configureStore({
         movies: moviesReducer,
         omdb: omdbReducer,
         likes: likesReducer,
-        users: usersReducer
+        users: usersReducer,
+        place: googlePlacesReducer
     }
 })
 
@@ -47,6 +51,8 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/movies/*" element={<Omdb/>}/>
                         <Route path="edit-profile" element={<EditProfileComponent/>}/>
+                        <Route path="/search" element={<GooglePlacesSearch/>}/>
+                        <Route path="/details/:placeID" element={<GooglePlacesDetails/>}/>
                     </Routes>
                 </CurrentUser>
             </div>
