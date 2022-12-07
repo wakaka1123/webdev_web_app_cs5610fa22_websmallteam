@@ -45,6 +45,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/profile" element={<Profile/>}/>
+                        <Route path="/profile/*" element={<OthersProfiles/>}/>
                         <Route path="/other" element={<OthersProfiles/>}/>
                         <Route path="/users" element={<UserList/>}/>
                         <Route path="/register" element={<Register/>}/>
