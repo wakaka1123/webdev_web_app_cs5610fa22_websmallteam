@@ -14,9 +14,9 @@ const GooglePlacesSearch = () => {
   }, [])
   return (
       <>
-        <ContactBar/>
-        <NavigationBar/>
-        <h1>Place Search</h1>
+          {/*<ContactBar/>*/}
+          {/*<NavigationBar/>*/}
+        <h1 className="mb-5">Place Search</h1>
         <ul className="list-group">
           <li className="list-group-item mb-5">
             <button

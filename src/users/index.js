@@ -15,7 +15,7 @@ const UserList = () => {
         <>
             {/*<ContactBar/>*/}
             {/*<NavigationBar/>*/}
-            <h1>Users {users.length}</h1>
+            <h1 className="mb-5">Users {users.length}</h1>
             <ul className="list-group">
                 {
                     Object.entries(users).map(([key, user]) =>
