@@ -1,9 +1,6 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUsersThunk} from "./users-thunk";
-import NavigationBar from "../home/navigationBar";
-import ContactBar from "../home/contactBar";
-import OtherProfile from "./profile-other";
+import {findAllUsersThunk} from "./users-admin-thunk";
 
 const UserList = () => {
     const {currentUser, users} = useSelector((state) => state.users)
@@ -13,20 +10,21 @@ const UserList = () => {
     }, [])
     return (
         <>
-            {/*<ContactBar/>*/}
-            {/*<NavigationBar/>*/}
             <h1 className="mb-5">Users {users.length}</h1>
-            <ul className="list-group">
-                {
-                    Object.entries(users).map(([key, user]) =>
-                        currentUser._id != key &&
-                        <li className="list-group-item"
-                            key={key}>
-                            <a href={"/profile/" + key}>{user.username}</a>
-                        </li>
-                    )
-                }
-            </ul>
+            {
+                currentUser &&
+                <ul className="list-group">
+                    {
+                        Object.entries(users).map(([key, user]) =>
+                            currentUser._id !== key &&
+                            <li className="list-group-item"
+                                key={key}>
+                                <a href={"/profile/" + key}>{user.username}</a>
+                            </li>
+                        )
+                    }
+                </ul>
+            }
         </>
     )
 }

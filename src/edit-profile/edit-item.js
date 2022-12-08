@@ -3,11 +3,6 @@ import {useDispatch} from "react-redux";
 import {editProfile} from "../users/users-reducer";
 import { useNavigate } from "react-router";
 import './index.css'
-import ContactBar from "../home/contactBar";
-import NavigationBar from "../home/navigationBar";
-import Select from 'react-select'
-
-
 
 const EditItem = (input) => {
     let data = JSON.parse(JSON.stringify(input.post));
