@@ -8,6 +8,8 @@ import Profile from "./users/profile.js";
 import OthersProfiles from "./users/profile-other";
 import UserList from "./users";
 import Register from "./users/register";
+import IndividualRegister from "./users/register-individual"
+import CorporateRegister from "./users/register-corporate"
 import Login from "./users/login";
 import {Routes, Route} from "react-router";
 import EditProfileComponent from "./edit-profile";
@@ -49,6 +51,8 @@ function App() {
                         <Route path="/other" element={<OthersProfiles/>}/>
                         <Route path="/users" element={<UserList/>}/>
                         <Route path="/register" element={<Register/>}/>
+                        <Route path="/register/individual" element={<IndividualRegister/>}/>
+                        <Route path="/register/corporate" element={<CorporateRegister/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/movies/*" element={<Omdb/>}/>
                         <Route path="edit-profile" element={<EditProfileComponent/>}/>

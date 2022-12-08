@@ -1,8 +1,6 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "./users-thunk";
-import NavigationBar from "../home/navigationBar";
-import ContactBar from "../home/contactBar";
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -17,8 +15,6 @@ const Login = () => {
     }
     return(
         <>
-            {/*<ContactBar/>*/}
-            {/*<NavigationBar/>*/}
             <h1>Login</h1>
             {
                 error &&
@@ -44,7 +40,7 @@ const Login = () => {
             </button>
             {
                 currentUser &&
-                    <h2>Welcome {currentUser.username}</h2>
+                    <h2>Welcome {currentUser.role} {currentUser.username}</h2>
             }
         </>
     )

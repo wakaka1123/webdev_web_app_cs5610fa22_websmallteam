@@ -1,6 +1,4 @@
 import {useSelector} from "react-redux";
-import NavigationBar from "../home/navigationBar";
-import ContactBar from "../home/contactBar";
 import React from "react";
 import {useNavigate} from "react-router";
 import "./profile.css";
@@ -10,8 +8,6 @@ const Profile = () => {
     const navigate = useNavigate();
     return (
         <>
-            {/*<ContactBar/>*/}
-            {/*<NavigationBar/>*/}
             <h1>Profile</h1>
             {
                 currentUser &&

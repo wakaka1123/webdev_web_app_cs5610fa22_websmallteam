@@ -35,15 +35,17 @@ const NavigationBar = () => {
                     <li className="nav-item">
                         <a href="/" className="nav-link">Contact</a>
                     </li>
-                    <li className="nav-item">
-                        <a href="/users" className="nav-link"> View All Users</a>
-                    </li>
+                    {
+                        currentUser && currentUser.username === 'admin' &&
+                        <>
+                            <li className="nav-item">
+                                <a href="/users" className="nav-link"> View All Users</a>
+                            </li>
+                        </>
+                    }
                     {
                         currentUser &&
                         <>
-                            {/*<li className="nav-item">*/}
-                            {/*    <h3> Welcome, {currentUser.username}</h3>*/}
-                            {/*</li>*/}
                             <li className="nav-item">
                                 <a href="/profile" className="nav-link">View My Profile</a>
                             </li>
