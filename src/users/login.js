@@ -15,7 +15,7 @@ const Login = () => {
     }
     return(
         <>
-            <h1>Login</h1>
+            <h1 className="mb-5">Login</h1>
             {
                 error &&
                 <div className="alert alert-danger">
