@@ -11,21 +11,18 @@ const NavigationBar = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-1"/>
 
-                <div className="col-5">
-
+                <div className="col-xl-6">
                     <h1 className="m-0">
                         <Link to="/" style={{textDecoration: "none"}}>
                             <span className="text-dark">TRAVEL</span>
                             <span className="text-danger">ER</span>
                         </Link>
                     </h1>
-
-
                 </div>
 
-                <ul className="col-6 pt-2 nav nav-pills">
+                <div className="col-xl-6">
+                <ul className="nav nav-pills">
                     <li className="nav-item">
                         <a href="/search" className="nav-link">Search</a>
                     </li>
@@ -64,17 +61,16 @@ const NavigationBar = () => {
                         </>
                     }
                 </ul>
-
-
+                </div>
             </div>
 
-            {
-                currentUser &&
-                <div className="row">
-                <div className="col-1"/>
-                <div className="col-5"> Welcome, {currentUser.username}</div>
-                </div>
-            }
+
+                {
+                    currentUser &&
+                    <div className="mb-5">
+                        <div className="col-5"> Welcome, {currentUser.username}</div>
+                    </div>
+                }
 
         </div>
 

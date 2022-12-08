@@ -14,9 +14,9 @@ const GooglePlacesDetails = () => {
   },[])
   return(
       <>
-        <ContactBar/>
-        <NavigationBar/>
-        <h1>{details.result?.name}</h1>
+          {/*<ContactBar/>*/}
+          {/*<NavigationBar/>*/}
+        <h1 className="mb-5">{details.result?.name}</h1>
         <div className="row">
           <div className="col">
             <ul className="list-group">
