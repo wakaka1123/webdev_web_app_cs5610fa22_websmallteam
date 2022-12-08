@@ -8,16 +8,12 @@ const Profile = () => {
     const navigate = useNavigate();
     return (
         <>
-            <h1>Profile</h1>
+            <h1 className="mb-5">My Profile</h1>
             {
                 currentUser &&
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-
-                            <div className="my-5">
-                                <h3>My Profile</h3>
-                            </div>
                             <div>
                                 <div>
                                     <div className="bg-secondary-soft px-4 py-5 rounded">

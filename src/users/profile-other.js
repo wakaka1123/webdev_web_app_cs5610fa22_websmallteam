@@ -16,16 +16,13 @@ const Profile = () => {
         <>
             {/*<ContactBar/>*/}
             {/*<NavigationBar/>*/}
-            <h1>Profile</h1>
+            <h1 className="mb-5">{profile.name}'s Profile</h1>
             {
                 profile &&
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
 
-                            <div className="my-5">
-                                <h3>{profile.name}'s Profile</h3>
-                            </div>
                             <div>
                                 <div>
                                     <div className="bg-secondary-soft px-4 py-5 rounded">

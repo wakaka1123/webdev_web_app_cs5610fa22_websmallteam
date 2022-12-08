@@ -10,7 +10,7 @@ const UserList = () => {
     }, [])
     return (
         <>
-            <h1>Users {users.length}</h1>
+            <h1 className="mb-5">Users {users.length}</h1>
             {
                 currentUser &&
                 <ul className="list-group">
@@ -25,7 +25,6 @@ const UserList = () => {
                     }
                 </ul>
             }
-
         </>
     )
 }
