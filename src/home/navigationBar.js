@@ -27,7 +27,7 @@ const NavigationBar = () => {
 
                 <ul className="col-6 pt-2 nav nav-pills">
                     <li className="nav-item">
-                        <a href="/" className="nav-link">Search</a>
+                        <a href="/search" className="nav-link">Search</a>
                     </li>
                     <li className="nav-item">
                         <a href="/" className="nav-link">About</a>

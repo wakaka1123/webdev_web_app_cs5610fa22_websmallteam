@@ -1,0 +1,4 @@
+.wd-list {
+  max-height: 78vh;
+  overflow: scroll;
+}

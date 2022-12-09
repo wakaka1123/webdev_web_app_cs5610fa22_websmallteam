@@ -17,6 +17,7 @@ import Omdb from "./omdb";
 import CurrentUser from "./users/current-user";
 import NavigationBar from "./home/navigationBar";
 import TopNav from "./topnav";
+import Search from "./search/search-index"
 
 
 const store = configureStore({
@@ -40,6 +41,7 @@ function App() {
                     <NavigationBar/>
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
+                        <Route path="/search" element={<Search/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/other" element={<OthersProfiles/>}/>
                         <Route path="/users" element={<UserList/>}/>
