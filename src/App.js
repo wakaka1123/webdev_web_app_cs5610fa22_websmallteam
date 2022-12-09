@@ -21,7 +21,19 @@ import CurrentUser from "./users/current-user";
 import NavigationBar from "./home/navigationBar";
 import TopNav from "./topnav";
 import GooglePlacesSearch from "./googleplaces/googleplaces-search";
-import GooglePlacesDetails from "./googleplaces/googleplaces-details"
+import GoogleplacesDetails from "./googleplaces/googleplaces-details";
+import GooglePlacesSearchResult from "./googleplaces/googleplace-result";
+import citiesReducer from "./cities/cities-reducer"
+import reviewsReducer from "./reviews/reviews-reducer"
+import museumsReducer from "./museums/museums-reducer"
+import restaurantsReducer from "./restaurants/restaurants-reducer"
+import CityList from "./cities"
+import MuseumList from "./museums"
+import RestaurantList from "./restaurants"
+import CurrentCity from "./cities/current-city";
+import CurrentMuseum from "./museums/current-museum"
+import CurrentRestaurant from "./restaurants/current-restaurant"
+
 
 
 const store = configureStore({
@@ -30,7 +42,11 @@ const store = configureStore({
         omdb: omdbReducer,
         likes: likesReducer,
         users: usersReducer,
-        place: googlePlacesReducer
+        place: googlePlacesReducer,
+        cities: citiesReducer,
+        reviews: reviewsReducer,
+        museums: museumsReducer,
+        restaurants: restaurantsReducer
     }
 })
 
@@ -57,7 +73,14 @@ function App() {
                         <Route path="/movies/*" element={<Omdb/>}/>
                         <Route path="edit-profile" element={<EditProfileComponent/>}/>
                         <Route path="/search" element={<GooglePlacesSearch/>}/>
-                        <Route path="/details/:placeID" element={<GooglePlacesDetails/>}/>
+                        <Route path="/search/:term" element={<GooglePlacesSearchResult/>}/>
+                        <Route path="/details/:placeID" element={<GoogleplacesDetails/>}/>
+                        <Route path="/cities" element={<CityList/>}/>
+                        <Route path="/museums" element={<MuseumList/>}/>
+                        <Route path="/restaurants" element={<RestaurantList/>}/>
+                        <Route path="/cities/:cityID" element={<CurrentCity/>}/>
+                        <Route path="/museums/:museumID" element={<CurrentMuseum/>}/>
+                        <Route path="/restaurants/:restaurantID" element={<CurrentRestaurant/>}/>
                     </Routes>
                 </CurrentUser>
             </div>

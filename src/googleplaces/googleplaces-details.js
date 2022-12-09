@@ -1,17 +1,33 @@
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {findPlaceByPlaceIdThunk} from "./googleplaces-thunks";
 import ContactBar from "../home/contactBar";
 import NavigationBar from "../home/navigationBar";
+import {
+  createReviewThunk,
+  findReviewsByAuthorThunk, findReviewsByPlaceThunk
+} from "../reviews/reviews-thunks"
+import {Link} from "react-router-dom";
 
-const GooglePlacesDetails = () => {
+const GoogleplacesDetails = () => {
   const {placeID} = useParams()
+  const navigate = useNavigate();
   const {details} = useSelector((state) => state.place)
+  const [review, setReview] = useState('')
+  const {reviews} = useSelector((state) => state.reviews)
+  const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(findPlaceByPlaceIdThunk(placeID))
-  },[])
+    dispatch(findReviewsByPlaceThunk(placeID))
+  },[placeID])
+  const handlePostReviewBtn = () => {
+    dispatch(createReviewThunk({
+      review,
+      placeID
+    }))
+  }
   return(
       <>
           {/*<ContactBar/>*/}
@@ -42,7 +58,36 @@ const GooglePlacesDetails = () => {
             </ul>
           </div>
         </div>
+        {
+          currentUser &&
+          <div>
+                    <textarea
+                        onChange={(e) => setReview(e.target.value)}
+                        className="form-control mt-3"></textarea>
+            <button className="btn btn-primary mt-2 mb-5" onClick={handlePostReviewBtn}>Post Review</button>
+          </div>
+        }
+        <ul className="list-group">
+          User Reviews:
+          {
+            reviews.map((review) =>
+                <li className="list-group-item">
+                  {review.review}
+                  <Link to={`/profile/${review.author._id}`} className="float-end">
+                    {review.author.username}
+                  </Link>
+                </li>
+            )
+          }
+        </ul>
+        <button
+            className="btn btn-primary mt-3"
+            onClick={() => {
+              navigate ('/search')
+            }
+            }>Back to Search
+        </button>
       </>
   )
 }
-export default GooglePlacesDetails
+export default GoogleplacesDetails
