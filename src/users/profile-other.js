@@ -19,6 +19,9 @@ const Profile = () => {
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     },[author,reviews])
+    const handleGoBackBtn = () => {
+        navigate(-1)
+    }
     return (
         <>
             {/*<ContactBar/>*/}

@@ -22,7 +22,7 @@ const NavigationBar = () => {
                     {
                         currentUser &&
                         <h6>
-                            <div className="col-5 text-primary"> Welcome, {currentUser.username}</div>
+                            <div className="col-5 text-primary"> Welcome, {currentUser.role} {currentUser.username}</div>
                         </h6>
                     }
                 </div>
@@ -46,12 +46,13 @@ const NavigationBar = () => {
                             </li>
                         </>
                     }
+
+                    <li className="nav-item">
+                        <a href="/profile" className="nav-link">View My Profile</a>
+                    </li>
                     {
                         currentUser &&
                         <>
-                            <li className="nav-item">
-                                <a href="/profile" className="nav-link">View My Profile</a>
-                            </li>
                             <button className="btn btn-primary" onClick={handleLogout}>
                                 Logout
                             </button>
