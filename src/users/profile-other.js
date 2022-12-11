@@ -18,11 +18,19 @@ const Profile = () => {
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     },[author,reviews])
+    const handleGoBackBtn = () => {
+        navigate(-1)
+    }
     return (
         <>
             {/*<ContactBar/>*/}
             {/*<NavigationBar/>*/}
             <h1 className="mb-5"> {profile && profile.name}'s Profile</h1>
+            <button
+                className="btn btn-primary"
+                onClick={handleGoBackBtn}>
+                Go Back to User list
+            </button>
             {
                 profile &&
                 <div className="container">

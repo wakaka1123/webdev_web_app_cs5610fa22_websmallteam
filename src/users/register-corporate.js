@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-corporate-thunk";
+import {useNavigate} from "react-router-dom";
 
 const RegisterCorporate = () => {
     const [username, setUsername] = useState('')
@@ -20,6 +21,10 @@ const RegisterCorporate = () => {
         setError(null)
         const newUser = {username, password, companyName, role, email}
         dispatch(registerThunk(newUser))
+    }
+    const navigate = useNavigate();
+    const handleGoBackBtn = () => {
+        navigate(-1)
     }
     return(
         <>
@@ -61,6 +66,13 @@ const RegisterCorporate = () => {
                 onClick={handleRegisterBtn}
                 className="btn btn-primary">
                 Register
+            </button>
+            <br/>
+            <br/>
+            <button
+                className="btn btn-primary"
+                onClick={handleGoBackBtn}>
+                Go Back to Register
             </button>
             {
                 currentUser &&
