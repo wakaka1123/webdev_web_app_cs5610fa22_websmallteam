@@ -58,7 +58,6 @@ function App() {
         <Provider store={store}>
             <div className="container">
                 <CurrentUser>
-                    <TopNav/>
                     <NavigationBar/>
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
