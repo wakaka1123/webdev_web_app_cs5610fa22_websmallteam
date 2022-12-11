@@ -4,6 +4,7 @@ import MidContent from "./midContent";
 import Carousel from "./carousel";
 import NavigationSidebar from "./sideBar";
 import {useSelector} from "react-redux";
+import WelcomeIndividual from "./welcome/welcome-individual";
 
 
 const HomePage = () =>{
@@ -23,6 +24,8 @@ const HomePage = () =>{
         <div className="row">
           <div className="col-2">
             <NavigationSidebar/>
+            <br/>
+            <WelcomeIndividual/>
 
           </div>
           <div className="col-10">
