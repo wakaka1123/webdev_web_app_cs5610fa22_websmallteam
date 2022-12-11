@@ -28,5 +28,8 @@ export const profileThunk = createAsyncThunk(
 
 export const deleteUserThunk = createAsyncThunk(
     'delete',
-    async() => await deleteUser()
+    async (uid) => {
+        await deleteUser(uid)
+        return uid
+    }
 )
