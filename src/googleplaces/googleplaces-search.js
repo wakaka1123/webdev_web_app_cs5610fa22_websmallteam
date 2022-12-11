@@ -51,6 +51,8 @@ const GooglePlacesSearch = () => {
         }))
   }
   const createRestaurantHandler = () => {
+    const addressArray = place.candidates?.map(item =>
+    {return item.formatted_address})[0].split(",")
     dispatch(createRestaurantsThunk(
         {
           name: place.candidates?.map(item =>
@@ -60,7 +62,8 @@ const GooglePlacesSearch = () => {
           googleRating: place.candidates?.map(item =>
           {return item.rating})[0],
           priceLevel: place.candidates?.map(item =>
-          {return item.price_level})[0]
+          {return item.price_level})[0],
+          city:  addressArray[addressArray.length-3]
         }))
   }
   const createMuseumHandler = () => {
