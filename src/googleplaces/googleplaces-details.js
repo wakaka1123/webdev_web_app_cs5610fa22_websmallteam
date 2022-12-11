@@ -27,6 +27,7 @@ const GoogleplacesDetails = () => {
             review,
             placeID
         }))
+        dispatch(findReviewsByPlaceThunk(placeID))
     }
     return (
         <>
