@@ -23,14 +23,10 @@ const NavigationSidebar = () => {
     <Link to="/profile" className={`list-group-item ${active === 'profile'?'active':''}`}>
       <i className="bi bi-person-circle"/> Profile
     </Link>
-    <a href="/" className={`list-group-item
-                    ${active === 'notifications'?'active':''}`}>
-      <i className="bi bi-journal-album"/> Album
-    </a>
-    <a href="/" className={`list-group-item
-                    ${active === 'messages'?'active':''}`}>
-      <i className="bi bi-chat-left-text-fill"/> Reviews
-    </a>
+    {/*<a href="/" className={`list-group-item*/}
+    {/*                ${active === 'messages'?'active':''}`}>*/}
+    {/*  <i className="bi bi-chat-left-text-fill"/> Reviews*/}
+    {/*</a>*/}
 
   </div>);
 };

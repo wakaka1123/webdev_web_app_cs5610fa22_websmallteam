@@ -33,6 +33,8 @@ import RestaurantList from "./restaurants"
 import CurrentCity from "./cities/current-city";
 import CurrentMuseum from "./museums/current-museum"
 import CurrentRestaurant from "./restaurants/current-restaurant"
+import welcomeIndividualReducer
+    from "./home/welcome/welcome-individual-reducer";
 
 
 
@@ -46,7 +48,8 @@ const store = configureStore({
         cities: citiesReducer,
         reviews: reviewsReducer,
         museums: museumsReducer,
-        restaurants: restaurantsReducer
+        restaurants: restaurantsReducer,
+        welcomeIndividualUser: welcomeIndividualReducer,
     }
 })
 
