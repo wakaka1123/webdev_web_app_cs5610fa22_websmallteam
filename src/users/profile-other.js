@@ -1,8 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import {useNavigate} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import "./profile.css";
 import {findAllUsersThunk} from "./users-thunk";
+import {findReviewsByAuthorThunk} from "../reviews/reviews-thunks";
 
 const Profile = () => {
     const {users} = useSelector((state) => state.users)
@@ -12,9 +13,16 @@ const Profile = () => {
         dispatch(findAllUsersThunk())
     }, [])
     const navigate = useNavigate();
+    const author = profile != null ? profile._id : "000000000000000000000000";
+    const {reviews} = useSelector((state) => state.reviews)
+    useEffect(() => {
+        dispatch(findReviewsByAuthorThunk(author))
+    },[author,reviews])
     return (
         <>
-            <h1 className="mb-5">{profile && profile.name}'s Profile</h1>
+            {/*<ContactBar/>*/}
+            {/*<NavigationBar/>*/}
+            <h1 className="mb-5"> {profile && profile.name}'s Profile</h1>
             {
                 profile &&
                 <div className="container">
@@ -99,31 +107,14 @@ const Profile = () => {
                                     <div className="col-xxl-12">
                                         <div className="bg-secondary-soft px-4 py-5 rounded">
                                             <div className="row g-3">
-                                                <h4 className="mb-4 mt-0">Groups / Links </h4>
-
-                                                <div className="col-md-3">
-                                                    <label className="form-label"><i
-                                                        className="fas fa-book-open"></i> Following</label>
-
-                                                </div>
-
-                                                <div className="col-md-3">
-                                                    <label className="form-label"><i
-                                                        className="fas fa-book-open"></i> Followers</label>
-
-                                                </div>
-
-                                                <div className="col-md-3">
-                                                    <label className="form-label"><i
-                                                        className="fas fa-book-open"></i> Review</label>
-
-                                                </div>
-
-                                                <div className="col-md-3">
-                                                    <label className="form-label"><i
-                                                        className="fas fa-book-open"></i> Favorites</label>
-
-                                                </div>
+                                                <h4 className="mb-4 mt-0">Related Reviews </h4>
+                                                <ul>
+                                                    {
+                                                        reviews.map((review, i) =>
+                                                            <li>{review.review}</li>
+                                                        )
+                                                    }
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
