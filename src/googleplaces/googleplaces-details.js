@@ -73,9 +73,11 @@ const GoogleplacesDetails = () => {
             reviews.map((review) =>
                 <li className="list-group-item">
                   {review.review}
-                  <Link to={`/profile/${review.author._id}`} className="float-end">
-                    {review.author.username}
-                  </Link>
+                  {review.author && <Link to={`/profile/${review.author?._id}`} className="float-end">
+                    {review.author?.username}
+                  </Link>}
+                  {!review.author && <span className ="float-end text-danger">Inactive User</span>}
+
                 </li>
             )
           }
