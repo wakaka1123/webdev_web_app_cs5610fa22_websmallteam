@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router";
 import "./profile.css";
-import {findAllUsersThunk} from "./users-thunk";
+import {findAllAdminUsersThunk} from "./users-admin-thunk";
 import {findReviewsByAuthorThunk} from "../reviews/reviews-thunks";
 
 const Profile = () => {
@@ -10,11 +10,12 @@ const Profile = () => {
     const profile = users[window.location.href.split("/").at(-1)]
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }, [])
     const navigate = useNavigate();
     const author = profile != null ? profile._id : "000000000000000000000000";
     const {reviews} = useSelector((state) => state.reviews)
+    const name = profile ? profile.role == "Corporate" ? profile.companyName : profile.firstName + " " + profile.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     },[author,reviews])
@@ -22,7 +23,7 @@ const Profile = () => {
         <>
             {/*<ContactBar/>*/}
             {/*<NavigationBar/>*/}
-            <h1 className="mb-5"> {profile && profile.name}'s Profile</h1>
+            <h1 className="mb-5"> {name}'s Profile</h1>
             {
                 profile &&
                 <div className="container">
@@ -40,7 +41,7 @@ const Profile = () => {
                                                 <div className="col-md-6">
                                                     <label className="form-label">Name *</label>
                                                     <input type="text" className="form-control" placeholder=""
-                                                           aria-label="name" value={profile.name} readOnly/>
+                                                           aria-label="name" value={name} readOnly/>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <label className="form-label">City *</label>
@@ -111,7 +112,7 @@ const Profile = () => {
                                                 <ul>
                                                     {
                                                         reviews.map((review, i) =>
-                                                            <li>{review.review}</li>
+                                                            <a href={"/details/" + review.placeID}>{review.review}</a>
                                                         )
                                                     }
                                                 </ul>
