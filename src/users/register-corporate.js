@@ -13,14 +13,19 @@ const RegisterCorporate = () => {
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
-    const handleRegisterBtn = () => {
+    const handleRegisterBtn = async () => {
         if (password !== validatePassword) {
             setError('Passwords must match')
             return
         }
         setError(null)
         const newUser = {username, password, companyName, role, email}
-        dispatch(registerThunk(newUser))
+        try {
+            const originalPromiseResult = await dispatch(registerThunk(newUser)).unwrap()
+            navigate("/")
+        } catch (error) {
+            setError("Unable to register")
+        }
     }
     const navigate = useNavigate();
     const handleGoBackBtn = () => {

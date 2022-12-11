@@ -15,7 +15,7 @@ const Login = () => {
         const loginUser = {username, password}
         try {
             const originalPromiseResult = await dispatch(loginThunk(loginUser)).unwrap()
-            navigate(-1)
+            navigate("/")
         } catch (error) {
             setError("Unable to login")
         }
