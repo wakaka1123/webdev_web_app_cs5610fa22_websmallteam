@@ -1,16 +1,16 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUsersThunk, deleteUserThunk} from "./users-admin-thunk";
+import {findAllAdminUsersThunk, deleteUserThunk} from "./users-admin-thunk";
 
 const UserList = () => {
     const {currentUser, users} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }, [])
     const deleteUserHandler = (uid) => {
         dispatch(deleteUserThunk(uid))
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }
     return (
         <>
