@@ -7,9 +7,26 @@ import Select from "react-select";
 import {createCitiesThunk, findAllCitiesThunk} from "../cities/cities-thunks";
 import {createRestaurantsThunk, findAllRestaurantsThunk} from "../restaurants/restaurants-thunks";
 import {createMuseumThunk, findAllMuseumsThunk} from "../museums/museums-thunks"
+import {Autocomplete} from "@react-google-maps/api"
+import Map from "./mapComponent";
 
 
 const GooglePlacesSearch = () => {
+
+  const [coordinates, setCoordinates] = useState({lat:47.608013,lng:-122.335167})
+  const[autocomplete,setAutocomplete] = useState(null)
+  const onLoad= (autoC)=> {
+    setAutocomplete(autoC)
+  }
+
+  const onPlaceChanged =()=>{
+    const lat = autocomplete.getPlace().geometry.location.lat()
+    const lng = autocomplete.getPlace().geometry.location.lng()
+    setCoordinates({lat,lng})
+    // setSearchTerm(autocomplete.getPlace().vicinity)
+    // console.log(autocomplete.getPlace().vicinity)
+  }
+
   const navigate = useNavigate();
   const {currentUser} = useSelector((state) => state.users)
   const [searchTerm, setSearchTerm] = useState('Seattle')
@@ -23,7 +40,7 @@ const GooglePlacesSearch = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(findPlaceBySearchTermThunk(searchTerm))
-  }, [place])
+  }, [searchTerm])
   const createCityHandler = () => {
     dispatch(createCitiesThunk(
         {
@@ -68,20 +85,26 @@ const GooglePlacesSearch = () => {
   }
   return (
       <>
-          {/*<ContactBar/>*/}
-          {/*<NavigationBar/>*/}
         <h1 className="mb-5">Place Search</h1>
+        <div className="row">
+          <div className="col-10 col-md-5">
         <Select
-          className="w-75 mb-2"
+          className="mb-2"
           options={selectOptions}
           onChange={(e) => setSearchType(Object.entries(e)[0][1])}
         />
+        <Autocomplete
+            onLoad={onLoad}
+            onPlaceChanged={onPlaceChanged}>
             <input
-                className="form-control w-75 mb-5"
+                className="form-control mb-5"
                 onChange={(e) => {
                   setSearchTerm(e.target.value)
                 }}
-                value={searchTerm}/>
+                value={searchTerm}
+            />
+        </Autocomplete>
+
         {
           searchType &&
           <button
@@ -125,6 +148,13 @@ const GooglePlacesSearch = () => {
               }>Find All Searched Restaurants
           </button>
         }
+          </div>
+          <div className="d-none d-md-block col-7">
+            <Map
+                coordinates={coordinates}
+            />
+          </div>
+        </div>
       </>)
 }
 export default GooglePlacesSearch;

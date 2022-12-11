@@ -14,8 +14,6 @@ const Profile = () => {
     const navigate = useNavigate();
     return (
         <>
-            {/*<ContactBar/>*/}
-            {/*<NavigationBar/>*/}
             <h1 className="mb-5">{profile && profile.name}'s Profile</h1>
             {
                 profile &&
