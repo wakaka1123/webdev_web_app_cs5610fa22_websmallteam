@@ -16,7 +16,10 @@ const Profile = () => {
     const navigate = useNavigate();
     return (
         <>
-            <h1 className="mb-5">Please login first to view profile</h1>
+            {
+                !currentUser &&
+                <h1 className="mb-5">Please login first to view profile</h1>
+            }
             {
                 currentUser &&
                 <div className="container">

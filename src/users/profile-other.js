@@ -24,9 +24,12 @@ const Profile = () => {
     }
     return (
         <>
-            {/*<ContactBar/>*/}
-            {/*<NavigationBar/>*/}
             <h1 className="mb-5"> {name}'s Profile</h1>
+            <button
+                className="btn btn-primary"
+                onClick={handleGoBackBtn}>
+                Go Back
+            </button>
             {
                 profile &&
                 <div className="container">
