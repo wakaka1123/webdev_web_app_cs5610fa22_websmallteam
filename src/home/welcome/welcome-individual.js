@@ -4,7 +4,6 @@ import {welcomeIndividualThunk} from "./welcome-thunk";
 import {Link} from "react-router-dom";
 
 
-const URL =  'localhost://3000'
 
 const WelcomeIndividual = () =>{
   const newIndividualUsers = useSelector((state) => state.welcomeIndividualUser)
