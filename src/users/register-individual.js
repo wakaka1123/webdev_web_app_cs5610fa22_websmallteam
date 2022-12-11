@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-individual-thunk";
+import {useNavigate} from "react-router-dom";
 
 const RegisterIndividual = () => {
     const [username, setUsername] = useState('')
@@ -21,6 +22,10 @@ const RegisterIndividual = () => {
         setError(null)
         const newUser = {username, password, firstName, lastName, role, email}
         dispatch(registerThunk(newUser))
+    }
+    const navigate = useNavigate();
+    const handleGoBackBtn = () => {
+        navigate(-1)
     }
     return(
         <>
@@ -67,6 +72,13 @@ const RegisterIndividual = () => {
                 onClick={handleRegisterBtn}
                 className="btn btn-primary">
                 Register
+            </button>
+            <br/>
+            <br/>
+            <button
+                className="btn btn-primary"
+                onClick={handleGoBackBtn}>
+                Go Back to Register
             </button>
             {
                 currentUser &&
