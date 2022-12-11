@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {findAllUsers, register, login, profile, logout} from "./users-corporate-service";
 
-export const findAllUsersThunk = createAsyncThunk(
+export const findAllCorpUsersThunk = createAsyncThunk(
     'findAllUsers',
     async () => await findAllUsers()
 )

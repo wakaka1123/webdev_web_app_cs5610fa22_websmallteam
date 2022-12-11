@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-corporate-thunk";
+import {findAllCorpUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-corporate-thunk";
 import {updateUser} from "./users-corporate-service";
 
 const usersCorporateReducer = createSlice({
@@ -22,7 +22,7 @@ const usersCorporateReducer = createSlice({
         }
     },
     extraReducers: {
-        [findAllUsersThunk.fulfilled]: (state, action) => {
+        [findAllCorpUsersThunk.fulfilled]: (state, action) => {
             state.users = action.payload
         },
         [registerThunk.fulfilled]: (state, action) => {
