@@ -14,9 +14,13 @@ const UserList = () => {
     }
     return (
         <>
-            <h1 className="mb-5">Users {users.length}</h1>
+            <h1 className="mb-5">All Users</h1>
             {
-                currentUser &&
+                !currentUser || (currentUser && currentUser.role !== 'Admin') &&
+                    <h1>You do not have permission to view this page</h1>
+            }
+            {
+                currentUser && currentUser.role == 'Admin' &&
                 <li className="list-group-item">
                     {
                         Object.entries(users).map(([key, user]) =>

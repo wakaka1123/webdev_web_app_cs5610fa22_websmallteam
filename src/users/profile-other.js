@@ -29,7 +29,7 @@ const Profile = () => {
             <button
                 className="btn btn-primary"
                 onClick={handleGoBackBtn}>
-                Go Back to User list
+                Go Back
             </button>
             {
                 profile &&
