@@ -35,6 +35,7 @@ import CurrentMuseum from "./museums/current-museum"
 import CurrentRestaurant from "./restaurants/current-restaurant"
 import welcomeIndividualReducer
     from "./home/welcome/welcome-individual-reducer";
+import followsReducer from "./follows/follows-reducer";
 
 
 
@@ -50,6 +51,7 @@ const store = configureStore({
         museums: museumsReducer,
         restaurants: restaurantsReducer,
         welcomeIndividualUser: welcomeIndividualReducer,
+        follows:followsReducer
     }
 })
 
@@ -65,7 +67,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage/>}/>
                         <Route path="/profile" element={<Profile/>}/>
-                        <Route path="/profile/*" element={<OthersProfiles/>}/>
+                        <Route path="/profile/:uid" element={<OthersProfiles/>}/>
                         <Route path="/other" element={<OthersProfiles/>}/>
                         <Route path="/users" element={<UserList/>}/>
                         <Route path="/register" element={<Register/>}/>

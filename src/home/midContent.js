@@ -12,12 +12,15 @@ const MidContent = ()=> {
               <br/>
               <div className="card" >
                 <div className="card-body">
-                  <h8 className="card-title text-success">Special title treatment</h8>
+                  <h8 className="card-title text-success">Here is the Web App User Guide</h8>
                   <p className="card-text">
-                    <h1 className="fw-bold">We Provide Best Tour Packages In Your Budget</h1>
+                    <h1 className="fw-bold">We Provide Best Tour Guide In Your Budget</h1>
 
-                    With supporting text below as a
-                    natural lead-in to additional content.</p>
+                    Click the search button on navigation bar or below to find destination cities,restaurants or museums.
+                    <div>
+                      You can post review on search details, follow users and view other users public profile.
+                    </div>
+                  </p>
 
                   <div className="row">
                     <div className="col-6 ">
@@ -31,7 +34,7 @@ const MidContent = ()=> {
                   <div className="mt-3 container">
 
 
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
+                  <a href="/search" className="btn btn-primary">Go somewhere</a>
                   </div>
                 </div>
               </div>
@@ -62,8 +65,8 @@ const MidContent = ()=> {
             </div>
 
             <div className="col-3">
-              <div className="fw-bold">Competitive Pricing</div>
-              <div>Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</div>
+              <div className="fw-bold">Search Tourist Destinations</div>
+              <div>We provide three types of tourist destinations to select, including cities, restaurants and museums.</div>
             </div>
 
             <div className="col-1 text-center">
@@ -76,8 +79,8 @@ const MidContent = ()=> {
             </div>
 
             <div className="col-3">
-              <div className="fw-bold">Best Services</div>
-              <div>Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</div>
+              <div className="fw-bold">Post Reviews</div>
+              <div>User can post reviews on specific destinations to share unique tourist experiences and stories.</div>
             </div>
 
             <div className="col-1 text-center">
@@ -90,8 +93,8 @@ const MidContent = ()=> {
             </div>
 
             <div className="col-3">
-              <div className="fw-bold">Worldwide Coverage</div>
-              <div>Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</div>
+              <div className="fw-bold">Interact with users</div>
+              <div>View public profile and follow function facilitate users to keep update their information and elaborate more chances building own social networks.</div>
             </div>
 
 
