@@ -4,8 +4,14 @@ import {useNavigate, useParams} from "react-router";
 import "./profile.css";
 import {findAllAdminUsersThunk} from "./users-admin-thunk";
 import {findReviewsByAuthorThunk} from "../reviews/reviews-thunks";
+import {
+    findFollowersThunk,
+    findFollowingThunk,
+    followUserThunk
+} from "../follows/follows-thunk";
 
 const Profile = () => {
+    const {uid} = useParams()
     const {users} = useSelector((state) => state.users)
     const profile = users[window.location.href.split("/").at(-1)]
     const dispatch = useDispatch()
@@ -18,13 +24,29 @@ const Profile = () => {
     const name = profile ? profile.role == "Corporate" ? profile.companyName : profile.firstName + " " + profile.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
-    },[author,reviews])
+    },[author])
+    useEffect(() => {
+        dispatch(findFollowersThunk(uid))
+        dispatch(findFollowingThunk(uid))
+    }, [])
+
     const handleGoBackBtn = () => {
         navigate(-1)
+    }
+    const {followers,following} = useSelector((state)=>state.follows)
+    const handleFollowBtn=()=>{
+        dispatch(followUserThunk({
+            followed:uid
+        }))
+
     }
     return (
         <>
             <h1 className="mb-5"> {name}'s Profile</h1>
+            <button onClick={handleFollowBtn}
+                    className="btn btn-success me-2">
+                Follow
+            </button>
             <button
                 className="btn btn-primary"
                 onClick={handleGoBackBtn}>
@@ -114,22 +136,47 @@ const Profile = () => {
                                     <div className="col-xxl-12">
                                         <div className="bg-secondary-soft px-4 py-5 rounded">
                                             <div className="row g-3">
-                                                <h4 className="mb-4 mt-0">Related Reviews </h4>
-                                                <li className="list-group-item">
-                                                    {
-                                                        reviews.map((review, i) =>
-                                                            <div>
-                                                                <a href={"/details/" + review.placeID}>{review.review}</a>
-                                                            </div>
-                                                        )
-                                                    }
-                                                </li>
+
+                                                <h4 className="mb-4 mt-0">Groups/Links </h4>
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Related Reviews</label>
+                                                    <ul>
+                                                        {
+                                                            reviews.map((review, i) =>
+                                                                <li>{review.review}</li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Following</label>
+                                                    <ul>
+                                                        {
+                                                            following && following.map((follow)=>
+                                                            <li>
+                                                                {follow.followed.username}
+                                                            </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Followers</label>
+                                                    <ul>
+                                                        {
+                                                            followers && followers.map((follow)=>
+                                                                <li>
+                                                                    {follow.follower.username}
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
