@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-admin-thunk";
+import {findAllAdminUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-admin-thunk";
 import {updateUser} from "./users-admin-service";
 
 const usersAdminReducer = createSlice({
@@ -22,7 +22,7 @@ const usersAdminReducer = createSlice({
         }
     },
     extraReducers: {
-        [findAllUsersThunk.fulfilled]: (state, action) => {
+        [findAllAdminUsersThunk.fulfilled]: (state, action) => {
             state.users = action.payload
         },
         [registerThunk.fulfilled]: (state, action) => {

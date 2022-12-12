@@ -11,12 +11,15 @@ const Profile = () => {
     const author = currentUser != null ? currentUser._id : "000000000000000000000000";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
-    },[author, reviews])
+    }, [author, reviews])
 
     const navigate = useNavigate();
     return (
         <>
-            <h1 className="mb-5">Please login first to view profile</h1>
+            {
+                !currentUser &&
+                <h1 className="mb-5">Please login first to view profile</h1>
+            }
             {
                 currentUser &&
                 <div className="container">
@@ -33,11 +36,10 @@ const Profile = () => {
                                                 <div className="col-7 text-end">
                                                     <button
                                                         className="rounded-pill btn btn-light bg-secondary text-white"
-                                                        onClick={() => navigate("../edit-profile")}>Edit Profile</button>
+                                                        onClick={() => navigate("../edit-profile")}>Edit Profile
+                                                    </button>
                                                 </div>
                                             </div>
-
-
 
 
                                             <div className="row">
@@ -67,7 +69,8 @@ const Profile = () => {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <label htmlFor="inputEmail4" className="form-label">Phone Number *</label>
+                                                    <label htmlFor="inputEmail4" className="form-label">Phone Number
+                                                        *</label>
                                                     <input type="phoneNumber" className="form-control" id="inputEmail4"
                                                            value={currentUser.phoneNumber} readOnly/>
                                                 </div>
@@ -137,13 +140,15 @@ const Profile = () => {
                                         <div className="bg-secondary-soft px-4 py-5 rounded">
                                             <div className="row g-3">
                                                 <h4 className="mb-4 mt-0">Related Reviews </h4>
-                                                <ul>
-                                                {
-                                                    reviews.map((review, i) =>
-                                                                <li>{review.review}</li>
-                                                    )
-                                                }
-                                                </ul>
+                                                <li className="list-group-item">
+                                                    {
+                                                        reviews.map((review, i) =>
+                                                            <div>
+                                                                <a href={"/details/" + review.placeID}>{review.review}</a>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </li>
                                             </div>
                                         </div>
                                     </div>

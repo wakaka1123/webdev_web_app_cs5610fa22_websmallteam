@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "./users-thunk";
+import {useNavigate} from "react-router";
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -8,10 +9,16 @@ const Login = () => {
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
-    const handleLoginBtn = () => {
+    const navigate = useNavigate();
+    const handleLoginBtn = async () => {
         setError(null)
         const loginUser = {username, password}
-        dispatch(loginThunk(loginUser))
+        try {
+            const originalPromiseResult = await dispatch(loginThunk(loginUser)).unwrap()
+            navigate("/")
+        } catch (error) {
+            setError("Unable to login")
+        }
     }
     return(
         <>

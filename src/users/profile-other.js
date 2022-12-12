@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router";
 import "./profile.css";
-import {findAllUsersThunk} from "./users-thunk";
+import {findAllAdminUsersThunk} from "./users-admin-thunk";
 import {findReviewsByAuthorThunk} from "../reviews/reviews-thunks";
 import {
     findFollowersThunk,
@@ -16,11 +16,12 @@ const Profile = () => {
     const profile = users[window.location.href.split("/").at(-1)]
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }, [])
     const navigate = useNavigate();
     const author = profile != null ? profile._id : "000000000000000000000000";
     const {reviews} = useSelector((state) => state.reviews)
+    const name = profile ? profile.role == "Corporate" ? profile.companyName : profile.firstName + " " + profile.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     },[author])
@@ -41,15 +42,15 @@ const Profile = () => {
     }
     return (
         <>
-            <h1 className="mb-5"> {profile && profile.name}'s Profile</h1>
+            <h1 className="mb-5"> {name}'s Profile</h1>
             <button onClick={handleFollowBtn}
-                className="btn btn-success me-2">
+                    className="btn btn-success me-2">
                 Follow
             </button>
             <button
                 className="btn btn-primary"
                 onClick={handleGoBackBtn}>
-                Go Back to User list
+                Go Back
             </button>
             {
                 profile &&
@@ -68,7 +69,7 @@ const Profile = () => {
                                                 <div className="col-md-6">
                                                     <label className="form-label">Name *</label>
                                                     <input type="text" className="form-control" placeholder=""
-                                                           aria-label="name" value={profile.name} readOnly/>
+                                                           aria-label="name" value={name} readOnly/>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <label className="form-label">City *</label>
@@ -137,7 +138,6 @@ const Profile = () => {
                                             <div className="row g-3">
 
                                                 <h4 className="mb-4 mt-0">Groups/Links </h4>
-
                                                 <div className="col-md-4">
                                                     <label className="form-label">Related Reviews</label>
                                                     <ul>
@@ -148,8 +148,6 @@ const Profile = () => {
                                                         }
                                                     </ul>
                                                 </div>
-
-
                                                 <div className="col-md-4">
                                                     <label className="form-label">Following</label>
                                                     <ul>
@@ -160,11 +158,8 @@ const Profile = () => {
                                                             </li>
                                                             )
                                                         }
-
                                                     </ul>
-
                                                 </div>
-
                                                 <div className="col-md-4">
                                                     <label className="form-label">Followers</label>
                                                     <ul>
@@ -175,13 +170,8 @@ const Profile = () => {
                                                                 </li>
                                                             )
                                                         }
-
                                                     </ul>
-
                                                 </div>
-
-
-
 
                                             </div>
                                         </div>

@@ -1,22 +1,26 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUsersThunk, deleteUserThunk} from "./users-admin-thunk";
+import {findAllAdminUsersThunk, deleteUserThunk} from "./users-admin-thunk";
 
 const UserList = () => {
     const {currentUser, users} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }, [])
     const deleteUserHandler = (uid) => {
         dispatch(deleteUserThunk(uid))
-        dispatch(findAllUsersThunk())
+        dispatch(findAllAdminUsersThunk())
     }
     return (
         <>
-            <h1 className="mb-5">Users {users.length}</h1>
+            <h1 className="mb-5">All Users</h1>
             {
-                currentUser &&
+                !currentUser || (currentUser && currentUser.role !== 'Admin') &&
+                    <h1>You do not have permission to view this page</h1>
+            }
+            {
+                currentUser && currentUser.role == 'Admin' &&
                 <li className="list-group-item">
                     {
                         Object.entries(users).map(([key, user]) =>
