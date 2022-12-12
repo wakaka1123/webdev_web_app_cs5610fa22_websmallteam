@@ -40,7 +40,7 @@ const EditItem = (input) => {
                                         <h4>About Me</h4>
 
                                         <div className="row">
-                                            <div className="col-md-6 mt-5">
+                                            <div className={profile.role == "Corporate" ? "col-md-6 mt-5" : "col-md-4 mt-5"}>
                                                 <label className="form-label">User Name *</label>
                                                 <input type="text" className="form-control" placeholder=""
                                                        aria-label="username" value={profile.username}
@@ -48,16 +48,42 @@ const EditItem = (input) => {
                                                            ...profile,
                                                            username: e.target.value})} />
                                             </div>
-
-                                            <div className="col-md-6 mt-5">
-                                                <label className="form-label">Name *</label>
-                                                <input type="text" className="form-control" placeholder=""
-                                                       aria-label="name" value={profile.name}
-                                                       onChange={(e) => update({
-                                                           ...profile,
-                                                           name: e.target.value})}
-                                                />
-                                            </div>
+                                            {
+                                                profile.role == "Corporate" &&
+                                                <div className="col-md-6 mt-5">
+                                                    <label className="form-label">Name *</label>
+                                                    <input type="text" className="form-control" placeholder=""
+                                                           aria-label="name" value={profile.name}
+                                                           onChange={(e) => update({
+                                                               ...profile,
+                                                               name: e.target.value})}
+                                                    />
+                                                </div>
+                                            }
+                                            {
+                                                profile.role == "Individual-User" &&
+                                                <div className="col-md-4 mt-5">
+                                                    <label className="form-label">FirstName *</label>
+                                                    <input type="text" className="form-control" placeholder=""
+                                                           aria-label="name" value={profile.firstName}
+                                                           onChange={(e) => update({
+                                                               ...profile,
+                                                               firstName: e.target.value})}
+                                                    />
+                                                </div>
+                                            }
+                                            {
+                                                profile.role == "Individual-User" &&
+                                                <div className="col-md-4 mt-5">
+                                                    <label className="form-label">LastName *</label>
+                                                    <input type="text" className="form-control" placeholder=""
+                                                           aria-label="name" value={profile.lastName}
+                                                           onChange={(e) => update({
+                                                               ...profile,
+                                                               lastName: e.target.value})}
+                                                    />
+                                                </div>
+                                            }
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
