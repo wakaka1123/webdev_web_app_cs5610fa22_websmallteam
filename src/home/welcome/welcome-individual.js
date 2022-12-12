@@ -14,6 +14,7 @@ const WelcomeIndividual = () =>{
   },[])
 
   return (
+      userArray &&
       <ul className="list-group">
         <li className="list-group-item active">Welcome new users</li>
         {
