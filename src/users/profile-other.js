@@ -140,13 +140,15 @@ const Profile = () => {
                                                 <h4 className="mb-4 mt-0">Groups/Links </h4>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Related Reviews</label>
-                                                    <ul>
+                                                    <li className="list-group-item">
                                                         {
                                                             reviews.map((review, i) =>
-                                                                <li>{review.review}</li>
+                                                                <div>
+                                                                    <a href={"/details/" + review.placeID}>{review.review}</a>
+                                                                </div>
                                                             )
                                                         }
-                                                    </ul>
+                                                    </li>
                                                 </div>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Following</label>

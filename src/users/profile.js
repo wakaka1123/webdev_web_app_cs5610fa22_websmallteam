@@ -9,6 +9,7 @@ const Profile = () => {
     const {reviews} = useSelector((state) => state.reviews)
     const dispatch = useDispatch()
     const author = currentUser != null ? currentUser._id : "000000000000000000000000";
+    const name = currentUser ? currentUser.role == "Corporate" ? currentUser.companyName : currentUser.firstName + " " + currentUser.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     }, [author, reviews])
@@ -51,7 +52,7 @@ const Profile = () => {
                                                 <div className="col-md-6 mt-5">
                                                     <label className="form-label">Name *</label>
                                                     <input type="text" className="form-control" placeholder=""
-                                                           aria-label="name" value={currentUser.name} readOnly/>
+                                                           aria-label="name" value={name} readOnly/>
                                                 </div>
 
                                             </div>
