@@ -12,6 +12,7 @@ import {
 
 const Profile = () => {
     const {uid} = useParams()
+    const {currentUser} = useSelector((state) => state.users)
     const {users} = useSelector((state) => state.users)
     const profile = users[window.location.href.split("/").at(-1)]
     const dispatch = useDispatch()
@@ -43,10 +44,13 @@ const Profile = () => {
     return (
         <>
             <h1 className="mb-5"> {name}'s Profile</h1>
-            <button onClick={handleFollowBtn}
-                    className="btn btn-success me-2">
-                Follow
-            </button>
+            {
+                currentUser && currentUser._id !== author &&
+                <button onClick={handleFollowBtn}
+                        className="btn btn-success me-2">
+                    Follow
+                </button>
+            }
             <button
                 className="btn btn-primary"
                 onClick={handleGoBackBtn}>
