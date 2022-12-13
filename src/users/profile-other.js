@@ -9,6 +9,7 @@ import {
     findFollowingThunk,
     followUserThunk
 } from "../follows/follows-thunk";
+import {Link} from "react-router-dom";
 
 const Profile = () => {
     const {uid} = useParams()
@@ -144,15 +145,15 @@ const Profile = () => {
                                                 <h4 className="mb-4 mt-0">Groups/Links </h4>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Related Reviews</label>
-                                                    <li className="list-group-item">
+                                                    <ul>
                                                         {
                                                             reviews.map((review, i) =>
-                                                                <div>
+                                                                <li>
                                                                     <a href={"/details/" + review.placeID}>{review.review}</a>
-                                                                </div>
+                                                                </li>
                                                             )
                                                         }
-                                                    </li>
+                                                    </ul>
                                                 </div>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Following</label>
@@ -160,7 +161,12 @@ const Profile = () => {
                                                         {
                                                             following && following.map((follow)=>
                                                             <li>
+                                                                {currentUser._id !== follow.followed._id && <Link to={`/profile/${follow.followed?._id}`}>
                                                                 {follow.followed.username}
+                                                                </Link>}
+                                                                {currentUser._id === follow.followed._id && <Link to={`/profile`}>
+                                                                    {follow.followed.username}
+                                                                </Link>}
                                                             </li>
                                                             )
                                                         }
@@ -172,7 +178,12 @@ const Profile = () => {
                                                         {
                                                             followers && followers.map((follow)=>
                                                                 <li>
-                                                                    {follow.follower.username}
+                                                                    {currentUser._id !== follow.follower._id &&  <Link to={`/profile/${follow.follower?._id}`}>
+                                                                        {follow.follower.username}
+                                                                </Link>}
+                                                                    {currentUser._id === follow.follower._id &&  <Link to={`/profile`}>
+                                                                        {follow.follower.username}
+                                                                    </Link>}
                                                                 </li>
                                                             )
                                                         }
@@ -183,6 +194,11 @@ const Profile = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <button
+                                    className="btn btn-primary mt-3"
+                                    onClick={handleGoBackBtn}>
+                                    Go Back
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -29,6 +29,9 @@ const GoogleplacesDetails = () => {
         }))
         dispatch(findReviewsByPlaceThunk(placeID))
     }
+    const handleGoBackBtn = () => {
+        navigate(-1)
+    }
     return (
         <>
             {/*<ContactBar/>*/}
@@ -63,6 +66,7 @@ const GoogleplacesDetails = () => {
                 currentUser && currentUser.role !== 'Corporate' && currentUser.role !== 'Admin' &&
                 <div>
                     <textarea
+                        placeholder={"What's on your mind?"}
                         onChange={(e) => setReview(e.target.value)}
                         className="form-control mt-3"></textarea>
                     <button className="btn btn-primary mt-2 mb-5" onClick={handlePostReviewBtn}>Post Review</button>
@@ -84,23 +88,28 @@ const GoogleplacesDetails = () => {
                     reviews.map((review) =>
                         <li className="list-group-item">
                             {review.review}
-                            {review.author && <Link to={`/profile/${review.author?._id}`} className="float-end">
+                            {review.author
+                            && review.author._id !== currentUser._id
+                            && <Link to={`/profile/${review.author?._id}`} className="float-end">
                                 {review.author?.username}
                             </Link>}
-                            {!review.author && <span className="float-end text-danger">Inactive User</span>}
-
+                            {review.author
+                            && review.author._id === currentUser._id
+                            && <Link to={`/profile`} className="float-end">
+                                {review.author?.username}
+                            </Link>}
+                            {!review.author
+                            && <span className="float-end text-danger">Inactive User</span>}
                         </li>
                     )
                 }
             </ul>
             <button
                 className="btn btn-primary mt-3"
-                onClick={() => {
-                    navigate('/search')
-                }
-                }>Back to Search
+                onClick={handleGoBackBtn}>
+                Go Back
             </button>
         </>
     )
 }
-export default GoogleplacesDetails
+export default GoogleplacesDetails;

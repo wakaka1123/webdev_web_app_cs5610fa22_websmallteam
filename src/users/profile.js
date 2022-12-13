@@ -13,7 +13,9 @@ const Profile = () => {
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     }, [author, reviews])
-
+    const handleGoBackBtn = () => {
+        navigate(-1)
+    }
     const navigate = useNavigate();
     return (
         <>
@@ -154,6 +156,12 @@ const Profile = () => {
                                         </div>
                                     </div>
                                 </div>
+
+                                <button
+                                    className="btn btn-primary mt-3"
+                                    onClick={handleGoBackBtn}>
+                                    Go Back
+                                </button>
 
 
                             </div>
