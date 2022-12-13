@@ -14,6 +14,9 @@ const PLACE_PHOTO_URL = 'https://maps.googleapis.com/maps/api/place/photo'
 const GooglePlacesSearchResult = () => {
   const navigate = useNavigate();
   const {place, loading} = useSelector((state) => state.place)
+  const handleGoBackBtn = () => {
+    navigate(-1)
+  }
   return (
       <>
         {/*<ContactBar/>*/}
@@ -55,10 +58,8 @@ const GooglePlacesSearchResult = () => {
         }
         <button
             className="btn btn-primary mt-3"
-            onClick={() => {
-              navigate ('/search')
-            }
-            }>Back to Search
+            onClick={handleGoBackBtn}>
+          Go Back
         </button>
       </>
   )

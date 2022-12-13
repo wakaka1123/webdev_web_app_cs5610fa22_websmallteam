@@ -29,7 +29,7 @@ const GooglePlacesSearch = () => {
 
   const navigate = useNavigate();
   const {currentUser} = useSelector((state) => state.users)
-  const [searchTerm, setSearchTerm] = useState('Seattle')
+  const [searchTerm, setSearchTerm] = useState('')
   const {place, loading} = useSelector((state) => state.place)
   const [searchType, setSearchType] = useState('')
   const selectOptions = [
@@ -101,6 +101,7 @@ const GooglePlacesSearch = () => {
             onPlaceChanged={onPlaceChanged}>
             <input
                 className="form-control mb-5"
+                placeholder={"Enter a location"}
                 onChange={(e) => {
                   setSearchTerm(e.target.value)
                 }}
