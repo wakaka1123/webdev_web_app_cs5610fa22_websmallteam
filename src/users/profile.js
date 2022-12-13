@@ -9,7 +9,7 @@ const Profile = () => {
     const {reviews} = useSelector((state) => state.reviews)
     const dispatch = useDispatch()
     const author = currentUser != null ? currentUser._id : "000000000000000000000000";
-    const name = currentUser ? currentUser.role == "Corporate" ? currentUser.companyName : currentUser.firstName + " " + currentUser.lastName : "";
+    const name = currentUser ? currentUser.role === "Corporate" ? currentUser.companyName : currentUser.firstName + " " + currentUser.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
     }, [author, reviews])
