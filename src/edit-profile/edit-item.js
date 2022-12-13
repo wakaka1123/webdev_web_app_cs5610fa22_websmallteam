@@ -7,16 +7,11 @@ import './index.css'
 const EditItem = (input) => {
     let data = JSON.parse(JSON.stringify(input.post));
     const [profile, update] = useState(data);
-    const [role, setRole] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const editProfileHandler = () => {
         dispatch(editProfile(profile));
     };
-    const selectOptions = [
-        {value: 'Individual-User', label: 'Individual-User'},
-        {value: 'Corporate', label: 'Corporate'},
-    ]
 
     const updateProfile = () => {
       editProfileHandler();
@@ -53,10 +48,10 @@ const EditItem = (input) => {
                                                 <div className="col-md-6 mt-5">
                                                     <label className="form-label">Name *</label>
                                                     <input type="text" className="form-control" placeholder=""
-                                                           aria-label="name" value={profile.name}
+                                                           aria-label="name" value={profile.companyName}
                                                            onChange={(e) => update({
                                                                ...profile,
-                                                               name: e.target.value})}
+                                                               companyName: e.target.value})}
                                                     />
                                                 </div>
                                             }

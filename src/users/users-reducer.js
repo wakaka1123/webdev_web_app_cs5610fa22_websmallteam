@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {findAllUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-thunk";
-import {updateUser} from "./users-service";
+import {updateIndividualUser} from "./users-individual-service";
+import {updateCorporateUser} from "./users-corporate-service";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -12,8 +13,14 @@ const usersReducer = createSlice({
     },
     reducers: {
         editProfile(state, action) {
-            updateUser(action.payload)
-                .then(res => console.log(res));
+            if (action.payload.role == "Corporate"){
+                updateCorporateUser(action.payload)
+                    .then(res => console.log(res));
+            }
+            else {
+                updateIndividualUser(action.payload)
+                    .then(res => console.log(res));
+            }
             state = {
                 ...state,
                 currentUser: action.payload

@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {findAllCorpUsersThunk, registerThunk, loginThunk, logoutThunk, profileThunk} from "./users-corporate-thunk";
-import {updateUser} from "./users-corporate-service";
+import {updateCorporateUser} from "./users-corporate-service";
 
 const usersCorporateReducer = createSlice({
     name: 'users-corporate',
@@ -12,7 +12,7 @@ const usersCorporateReducer = createSlice({
     },
     reducers: {
         editCorporateProfile(state, action) {
-            updateUser(action.payload)
+            updateCorporateUser(action.payload)
                 .then(res => console.log(res));
             state = {
                 ...state,

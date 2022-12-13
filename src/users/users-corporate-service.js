@@ -36,7 +36,7 @@ export const logout = async () => {
 export const deleteUser = async (uid) => {
 }
 
-export const updateUser = async (profile) => {
-    const response = await axios.put(`${BASE_URL}/profile`, profile)
+export const updateCorporateUser = async (profile) => {
+    const response = await axios.put(`${BASE_URL}/users/corporate`, profile)
     return response.data
 }
