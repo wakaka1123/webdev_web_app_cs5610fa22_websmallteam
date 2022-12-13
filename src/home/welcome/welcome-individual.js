@@ -21,9 +21,9 @@ const WelcomeIndividual = () =>{
 
           userArray?.map((item)=>
               <li className="list-group-item" key={item._id}>
-                <Link to={`/profile/${item._id}`} style={{textDecoration: "none"}}>
+                <a href={`/profile/${item._id}`} style={{textDecoration: "none"}}>
                   {item.username}
-                </Link>
+                </a>
               </li>
           )
         }
