@@ -9,7 +9,7 @@ import {
     findFollowingThunk,
     followUserThunk
 } from "../follows/follows-thunk";
-import {Link} from "react-router-dom";
+
 
 const Profile = () => {
     const {uid} = useParams()
@@ -40,13 +40,21 @@ const Profile = () => {
         dispatch(followUserThunk({
             followed:uid
         }))
-
+        navigate(0)
+    }
+    let notShowFollowBtn
+    for(let i =0;i<followers.length;i++){
+        let check = followers[i].follower._id
+        if(check === currentUser._id) {
+            notShowFollowBtn = true;
+            break;
+        }
     }
     return (
         <>
             <h1 className="mb-5"> {name}'s Profile</h1>
             {
-                currentUser && currentUser._id !== author &&
+                !notShowFollowBtn && currentUser && currentUser._id !== author &&
                 <button onClick={handleFollowBtn}
                         className="btn btn-success me-2">
                     Follow
@@ -145,7 +153,7 @@ const Profile = () => {
                                                 <h4 className="mb-4 mt-0">Groups/Links </h4>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Related Reviews</label>
-                                                    <ul>
+                                                    <ul className="list-group">
                                                         {
                                                             reviews.map((review, i) =>
                                                                 <li>
@@ -155,18 +163,20 @@ const Profile = () => {
                                                         }
                                                     </ul>
                                                 </div>
+
                                                 <div className="col-md-4">
                                                     <label className="form-label">Following</label>
-                                                    <ul>
+                                                    <ul className="list-group">
                                                         {
                                                             following && following.map((follow)=>
                                                             <li>
-                                                                {currentUser._id !== follow.followed._id && <Link to={`/profile/${follow.followed?._id}`}>
-                                                                {follow.followed.username}
-                                                                </Link>}
-                                                                {currentUser._id === follow.followed._id && <Link to={`/profile`}>
-                                                                    {follow.followed.username}
-                                                                </Link>}
+                                                                {currentUser._id !== follow.followed?._id && <a href={`/profile/${follow.followed?._id}`}>
+                                                                {follow.followed?.username}
+                                                                </a>}
+                                                                {currentUser._id === follow.followed?._id && <a href={`/profile`}>
+                                                                    {follow.followed?.username}
+                                                                </a>}
+                                                                {!follow.follower && 'inactive user'}
                                                             </li>
                                                             )
                                                         }
@@ -174,16 +184,18 @@ const Profile = () => {
                                                 </div>
                                                 <div className="col-md-4">
                                                     <label className="form-label">Followers</label>
-                                                    <ul>
+                                                    <ul className="list-group">
                                                         {
                                                             followers && followers.map((follow)=>
                                                                 <li>
-                                                                    {currentUser._id !== follow.follower._id &&  <Link to={`/profile/${follow.follower?._id}`}>
-                                                                        {follow.follower.username}
-                                                                </Link>}
-                                                                    {currentUser._id === follow.follower._id &&  <Link to={`/profile`}>
-                                                                        {follow.follower.username}
-                                                                    </Link>}
+                                                                    {currentUser._id !== follow.follower?._id &&  <a href={`/profile/${follow.follower?._id}`}>
+                                                                        {follow.follower?.username}
+
+                                                                </a>}
+                                                                    {currentUser._id === follow.follower?._id &&  <a href={`/profile`}>
+                                                                        {follow.follower?.username}
+                                                                    </a>}
+                                                                    {!follow.follower && 'inactive user'}
                                                                 </li>
                                                             )
                                                         }

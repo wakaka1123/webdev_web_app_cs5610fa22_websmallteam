@@ -3,16 +3,21 @@ import React, {useEffect} from "react";
 import {useNavigate} from "react-router";
 import {findReviewsByAuthorThunk} from "../reviews/reviews-thunks"
 import "./profile.css";
+import {findFollowersThunk, findFollowingThunk} from "../follows/follows-thunk";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
+    const {followers,following} = useSelector((state)=>state.follows)
     const dispatch = useDispatch()
     const author = currentUser != null ? currentUser._id : "000000000000000000000000";
     const name = currentUser ? currentUser.role === "Corporate" ? currentUser.companyName : currentUser.firstName + " " + currentUser.lastName : "";
     useEffect(() => {
         dispatch(findReviewsByAuthorThunk(author))
-    }, [author, reviews])
+        dispatch(findFollowersThunk(author))
+        dispatch(findFollowingThunk(author))
+    }, [author])
+
     const handleGoBackBtn = () => {
         navigate(-1)
     }
@@ -142,16 +147,59 @@ const Profile = () => {
                                     <div className="col-xxl-12">
                                         <div className="bg-secondary-soft px-4 py-5 rounded">
                                             <div className="row g-3">
-                                                <h4 className="mb-4 mt-0">Related Reviews </h4>
-                                                <li className="list-group-item">
-                                                    {
-                                                        reviews.map((review, i) =>
-                                                            <div>
-                                                                <a href={"/details/" + review.placeID}>{review.review}</a>
-                                                            </div>
-                                                        )
-                                                    }
-                                                </li>
+
+                                                <h4 className="mb-4 mt-0">Groups/Links </h4>
+
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Related Reviews</label>
+                                                        <ul className="list-group">
+                                                            {
+                                                                reviews.map((review, i) =>
+                                                                    <li>
+                                                                        <a href={"/details/" + review.placeID}>{review.review}</a>
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        </ul>
+                                                </div>
+
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Following</label>
+                                                    <ul className="list-group">
+                                                        {
+                                                            following && following.map((follow)=>
+                                                                <li>
+                                                                    {currentUser._id !== follow.followed._id && <a href={`/profile/${follow.followed?._id}`}>
+                                                                        {follow.followed.username}
+                                                                    </a>}
+                                                                    {currentUser._id === follow.followed._id && <a href={`/profile`}>
+                                                                        {follow.followed.username}
+                                                                    </a>}
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Followers</label>
+                                                    <ul className="list-group">
+                                                        {
+                                                            followers && followers.map((follow)=>
+                                                                <li>
+                                                                    {currentUser._id !== follow.follower._id &&  <a href={`/profile/${follow.follower?._id}`}>
+                                                                        {follow.follower.username}
+                                                                    </a>}
+                                                                    {currentUser._id === follow.follower._id &&  <a href={`/profile`}>
+                                                                        {follow.follower.username}
+                                                                    </a>}
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>
