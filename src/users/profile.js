@@ -186,11 +186,11 @@ const Profile = () => {
                                                         {
                                                             followers && followers.map((follow)=>
                                                                 <li>
-                                                                    {currentUser._id !== follow.follower._id &&  <a href={`/profile/${follow.follower?._id}`}>
-                                                                        {follow.follower.username}
+                                                                    {currentUser._id !== follow.follower?._id &&  <a href={`/profile/${follow.follower?._id}`}>
+                                                                        {follow.follower?.username}
                                                                     </a>}
-                                                                    {currentUser._id === follow.follower._id &&  <a href={`/profile`}>
-                                                                        {follow.follower.username}
+                                                                    {currentUser._id === follow.follower?._id &&  <a href={`/profile`}>
+                                                                        {follow.follower?.username}
                                                                     </a>}
                                                                 </li>
                                                             )
