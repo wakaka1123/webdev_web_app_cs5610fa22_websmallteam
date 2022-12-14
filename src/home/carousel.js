@@ -32,9 +32,10 @@ const Carousel = () => {
 
 
   let lastCity = lastThree.split(',')[0]
+  console.log(lastCity)
   useEffect(() => {
     dispatch(findPlaceBySearchTermThunk(lastCity))
-  }, [])
+  }, [lastCity])
 
   if(place.length != 0){
     const placePhotoUrl = `${place.candidates?.map(item=>{return item.photos?.map(i=>{return i.photo_reference})})}`
