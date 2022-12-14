@@ -89,12 +89,12 @@ const GoogleplacesDetails = () => {
                         <li className="list-group-item">
                             {review.review}
                             {review.author
-                            && review.author._id !== currentUser._id
+                            && review.author?._id !== currentUser?._id
                             && <Link to={`/profile/${review.author?._id}`} className="float-end">
                                 {review.author?.username}
                             </Link>}
                             {review.author
-                            && review.author._id === currentUser._id
+                            && review.author?._id === currentUser?._id
                             && <Link to={`/profile`} className="float-end">
                                 {review.author?.username}
                             </Link>}

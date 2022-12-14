@@ -44,8 +44,8 @@ const Profile = () => {
     }
     let notShowFollowBtn
     for(let i =0;i<followers.length;i++){
-        let check = followers[i].follower._id
-        if(check === currentUser._id) {
+        let check = followers[i].follower?._id
+        if(check === currentUser?._id) {
             notShowFollowBtn = true;
             break;
         }
@@ -170,10 +170,10 @@ const Profile = () => {
                                                         {
                                                             following && following.map((follow)=>
                                                             <li>
-                                                                {currentUser._id !== follow.followed?._id && <a href={`/profile/${follow.followed?._id}`}>
+                                                                {currentUser?._id !== follow.followed?._id && <a href={`/profile/${follow.followed?._id}`}>
                                                                 {follow.followed?.username}
                                                                 </a>}
-                                                                {currentUser._id === follow.followed?._id && <a href={`/profile`}>
+                                                                {currentUser?._id === follow.followed?._id && <a href={`/profile`}>
                                                                     {follow.followed?.username}
                                                                 </a>}
                                                                 {!follow.follower && 'inactive user'}
@@ -188,11 +188,11 @@ const Profile = () => {
                                                         {
                                                             followers && followers.map((follow)=>
                                                                 <li>
-                                                                    {currentUser._id !== follow.follower?._id &&  <a href={`/profile/${follow.follower?._id}`}>
+                                                                    {currentUser?._id !== follow.follower?._id &&  <a href={`/profile/${follow.follower?._id}`}>
                                                                         {follow.follower?.username}
 
                                                                 </a>}
-                                                                    {currentUser._id === follow.follower?._id &&  <a href={`/profile`}>
+                                                                    {currentUser?._id === follow.follower?._id &&  <a href={`/profile`}>
                                                                         {follow.follower?.username}
                                                                     </a>}
                                                                     {!follow.follower && 'inactive user'}
